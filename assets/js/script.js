@@ -7,16 +7,16 @@ window.onload = function(){
     el: '#app',
     data: {
       title: 'Venue',
-      latitude: null,
-      longitude: null,
+      location: null,
       venues: null
     },
     created: function () {
-      if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(this.geoSuccess);
-      }else{
-        $('#errorMessage').text('Geolocation is not supported by this browser.');
-      }
+      // if(navigator.geolocation){
+      //   navigator.geolocation.getCurrentPosition(this.geoSuccess);
+      // }else{
+      //   $('#errorMessage').text('Geolocation is not supported by this browser.');
+      // }
+      this.fetchData(this.buildApiUrl(0,0)); // temporary without browser location
     },
     methods: {
       fetchData: function(url){
@@ -26,13 +26,15 @@ window.onload = function(){
           context: document.body,
           method: "GET"
         }).done(function(data) {
-          console.log(data);
+          self.location = data.response.headerFullLocation;
+          self.venues = data.response.groups[0].items;
         }).fail(function(er){
           $('#errorMessage').text('Oops! Something went wrong. Please try again later.');
         });
       },
       buildApiUrl: function(latitude, longitude){
-        var url = apiURL + '?ll=' + latitude + ',' + longitude;
+        //var url = apiURL + '?ll=' + latitude + ',' + longitude;
+        var url = apiURL + '?ll=40.7,-74'; // temporary location
         url += '&client_id=' + clientId;
         url += '&client_secret=' + clientSecret;
         url += '&v=20171101';

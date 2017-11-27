@@ -10,8 +10,12 @@
   </head>
   <body>
     <div class="content" id="app">
-      <h1>Venue</h1>
+      <h1>{{ title }}</h1>
+      <h3>Recommended Places at {{ location }}</h3>
       <span id="errorMessage" class="error_message"></span>
+      <ul>
+        <li v-for="venue in venues">{{venue.venue.name}}</li>
+      </ul>
     </div>
   </body>
 </html
