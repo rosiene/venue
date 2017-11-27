@@ -5,23 +5,36 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="assets/js/script.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Poppins|Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Venue</title>
   </head>
   <body>
     <div class="content" id="app">
       <h1 class="header">{{ title }}</h1>
-      <h3>Recommended Places at {{ location }}</h3>
-      <span id="errorMessage" class="error_message"></span>
-      <ul class="venues-list">
-        <li v-for="venue in venues">
-          <div>{{ venue.venue.name }} <span>{{ venue.venue.rating }}</span><span>{{ venue.venue.price.message}}</span></div>
-          <div v-for="category in venue.venue.categories">{{ category.name }} </div>
-          <div>{{ venue.venue.location.distance }}</div>
-          <div>{{ venue.venue.location.formattedAddress[0] }}, {{ venue.venue.location.formattedAddress[1] }}</div>
-        </li>
-      </ul>
+      <span id="errorMessage" class="error_message">error</span>
+      <div class="loading" v-if="loading">
+        <img src="assets/img/spinner.gif" />
+      </div>
+      <div v-if="!loading && location" class="animated fadeIn">
+        <h3>Recommended Places at {{ location }}:</h3>
+        <ul class="venues-list">
+          <li v-for="venue in venues">
+            <div>
+              <a :href="venue.venue.url" target="_blank" class="venue-title">{{ venue.venue.name }}</a>
+              <span class="box rating" title="Rating">{{ venue.venue.rating }}</span>
+              <span class="box category" v-for="category in venue.venue.categories" :title="category.name">
+                <img :src="category.icon.prefix+32+category.icon.suffix" />
+              </span>
+            </div>
+            <div>
+              <span class="price" v-if="venue.venue.price !== undefined">Price: {{ venue.venue.price.message}}</span>
+              <span>Distance: {{ venue.venue.location.distance }}m</span>
+              <span>Address: {{ venue.venue.location.formattedAddress[0] }}, {{ venue.venue.location.formattedAddress[1] }}<span></div>
+          </li>
+        </ul>
+      </div>
     </div>
   </body>
 </html

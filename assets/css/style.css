@@ -1,16 +1,22 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #444;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
 }
 
 h1 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Cabin', sans-serif;
   color: #31D0BF;
   font-size: 42px;
   margin: 20px 0;
-  text-shadow: 1px 1px 1px #A1A1A1;
+  text-shadow: 1px 1px 1px #A6ABB4;
+}
+h3 {
+  font-size: 22px;
 }
 
 .content {
@@ -25,7 +31,56 @@ h1 {
 
 .venues-list li{
   border: white solid 1px;
-  box-shadow: 0px 1px 2px #D1D1D1;
+  box-shadow: 0px 1px 2px #A6ABB4;
   margin: 20px 0;
   padding: 10px;
+}
+
+.venue-title {
+  text-decoration: none;
+  color: #196291;
+  font-size: 24px;
+}
+
+.venue-title:hover {
+  color: #33253D;
+}
+
+.box {
+  background: #A6ABB4;
+  border-radius: 5px;
+  width: 18px;
+  height: 18px;
+  padding: 5px;
+  margin-left: 5px;
+  vertical-align: super;
+  display: inline-block;
+  text-align: center;
+}
+
+.rating {
+  background: #ECB4B8;
+  font-weight: bold;
+}
+
+.category {
+  background-color: #33253D;
+}
+
+.category img{
+  width: 16px;
+  height: 16px;
+  margin-bottom: -4px;
+}
+
+.loading {
+  text-align: center;
+}
+
+.error_message {
+  border: solid 1px #ea777f;
+  color: #ea777f;
+  border-radius: 3px;
+  padding: 5px;
+  display: none;
 }
