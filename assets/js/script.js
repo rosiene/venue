@@ -9,9 +9,11 @@ window.onload = function(){
       title: 'Venue',
       loading: false,
       location: null,
-      venues: null
+      venues: null,
+      width: null
     },
     created: function () {
+      this.width = window.innerWidth
       // if(navigator.geolocation){
       //   this.loading = true;
       //   navigator.geolocation.getCurrentPosition(this.geoSuccess);
@@ -44,6 +46,7 @@ window.onload = function(){
         url += '&client_id=' + clientId;
         url += '&client_secret=' + clientSecret;
         url += '&v=20171101';
+        url += '&venuePhotos=1';
         return url;
       },
       geoSuccess: function(position){
